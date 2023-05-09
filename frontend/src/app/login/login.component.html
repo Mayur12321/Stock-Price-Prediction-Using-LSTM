@@ -1,0 +1,19 @@
+<div class="auth-container">
+
+    <form [formGroup]="profileForm">
+
+        <mat-form-field [floatLabel]="'never'">
+            <input matInput placeholder="Enter email" formControlName="email">
+        </mat-form-field>
+
+
+        <mat-form-field [floatLabel]="'never'">
+            <input matInput type="password" placeholder="Enter Password" formControlName="password">
+        </mat-form-field>
+
+
+        <button mat-raised-button color="primary" [disabled]="profileForm.invalid" (click)="onLogin()">Login</button>
+
+    </form>
+
+</div>

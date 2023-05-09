@@ -1,0 +1,98 @@
+<div class="stock-info-container">
+    <div class="header">
+
+        <div class="img-container">
+            <img class="stock-pic" [src]="logo_url" />
+        </div>
+
+        <div class="title-container">
+            <h1>{{name}} ({{stock}})</h1>
+        </div>
+
+    </div>
+
+
+    <!-- Chart -->
+    <div class="chart-container">
+        <ejs-stockchart class="stock-chart" id='stockInfoChart_1' [chartArea]='chartArea' [primaryXAxis]='primaryXAxis'
+            [primaryYAxis]='primaryYAxis' [crosshair]='crosshair' [title]='title' [titleStyle]="titleStyle"
+            [tooltip]='tooltip' (tooltipRender)='tooltipRender($event)' (axisLabelRender)='axisLabelRender($event)'
+            [border]="border" [theme]="theme">
+
+            <e-stockchart-axes>
+                <e-stockchart-axis rowIndex=1 name='yAxis1' opposedPosition=true labelPosition='Inside'
+                    tickPosition='Inside'>
+                </e-stockchart-axis>
+            </e-stockchart-axes>
+
+            <e-stockchart-rows>
+                <e-stockchart-row height=30%></e-stockchart-row>
+                <e-stockchart-row height=70%></e-stockchart-row>
+            </e-stockchart-rows>
+
+            <e-stockchart-series-collection>
+                <e-stockchart-series [dataSource]='chartData' type='Candle' xName='date' yName='high' yAxisName='yAxis1'
+                    high='high' low='low' [fill]="fill"> </e-stockchart-series>
+                <e-stockchart-series [dataSource]='chartData' type='Column' xName='date' yName='volume' high='high'
+                    low='low' [enableTooltip]='columnTooltip'> </e-stockchart-series>
+            </e-stockchart-series-collection>
+
+        </ejs-stockchart>
+    </div>
+
+
+    <div class="container">
+        <div class="container-container">
+            <div class="info-container">
+                <div class="header-container">
+                    <h2>Info</h2>
+                </div>
+
+                <div class="content-container">
+                    <div class="content">
+                        <p>Price: ${{price | number}}</p>
+                        <p>Market Cap: ${{mkt_cap}}</p>
+
+                        <p>24hr Change: {{dayChange * 100 | number}}%</p>
+                        <p>52wk Change: {{yearChange * 100 | number}}%</p>
+
+                        <p>Volume: {{volume}}</p>
+                        
+                    </div>
+
+                    <div class="content">
+                        <p>Sector: {{sector}}</p>
+
+                        <p>Shares held by insiders: {{heldPctInsider * 100 | number}}%</p>
+
+                        <p>Shares held by institutions: {{heldPctInst * 100| number}}%</p>
+
+                        <p>Short Ratio: {{shortRatio}}</p>
+                        
+                        <p>Average Volume: {{avg_volume}}</p>
+                    </div>
+                </div>
+<!-- {{value | number:'1.0-0'}} -->
+            </div>
+        </div>
+
+        <div class="container-container">
+            <div class="info-container">
+                <div class="header-container">
+                    <h2>News</h2>
+                </div>
+
+                <div class="content-container">
+                    <div class="content">
+                        <ul *ngFor="let story of news">
+                            <li><a href={{story.link}} target="_blank" rel="noopener">{{story.title}}</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

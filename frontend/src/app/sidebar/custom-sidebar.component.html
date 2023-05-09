@@ -1,0 +1,78 @@
+<ejs-sidebar #dockBar id="dockSidebar" [enableDock]='enableDock' [width]='width' [dockSize]='dockSize'>
+    <div class="dock">
+        <div>
+            <ul>
+                <li class="sidebar-item" id="toggle" (click)="toggleClick()">
+                    <span class="e-icons expand"></span>
+                    <span class="e-text" title="menu">Menu</span>
+                </li>
+
+                <li class="sidebar-item" (click)="onHome()">
+                    <span class="e-icons home"></span>
+                    <span class="e-text" title="home">Home</span>
+                </li>                
+
+                <li class="sidebar-item" (click)="onDashboard()">
+                    <span class="e-icons dashboard"></span>
+                    <span class="e-text" title="dashboard">Dashboard</span>
+                </li>
+
+                <li class="sidebar-item" (click)="openLogin()">
+                    <span class="e-icons login"></span>
+                    <span class="e-text" title="login">Login</span>
+                </li>
+
+                <li class="sidebar-item" (click)="openRegister()">
+                    <span class="e-icons register"></span>
+                    <span class="e-text" title="register">Register</span>
+                </li>
+  
+                <li class="sidebar-item" (click)="onLogout()">
+                    <span class="e-icons logout"></span>
+                    <span class="e-text" title="logout">Logout</span>
+                </li>   
+
+                <li class="sidebar-item" (click)="onHelp()">
+                    <span class="e-icons help"></span>
+                    <span class="e-text" title="help">Help</span>
+                </li>                               
+            </ul>
+            <!-- Not Needed right now, can be done if we have time, but prob not -->
+            <!-- <div class="control-section" style="overflow:hidden;">
+                <div class="col-lg-12">
+                    <div class="sidebar_tree">
+                        <ejs-treeview id="default" [fields]='field'>
+                            <ul>
+                                <li class="sidebar-item">
+                                    <span class="e-icons home"></span>
+                                    <span class="e-text" title="home">Home</span>
+                                </li>
+                                <li class="sidebar-item">
+                                    <span class="e-icons info"></span>
+                                    <span class="e-text" title="info">Info</span>
+                                </li>
+                                <li class="sidebar-item">
+                                    <span class="e-icons settings"></span>
+                                    <span class="e-text" title="settings">Settings</span>
+                                </li>
+                            </ul>
+                        </ejs-treeview>
+                    </div>
+                </div>
+            </div>
+
+                <ejs-treeview>        
+                </ejs-treeview> -->
+        </div>
+        <!-- <div class="footer">
+            <span class="e-icons theme"></span>
+            <span><a href="#" >Dark Mode!</a></span>
+        </div> -->
+        
+    </div>
+</ejs-sidebar>
+
+<div id="main-content container-fluid col-md-12 ">
+    <app-home *ngIf="!isAuthenticated || (displayHome && !displayDashboard)"></app-home>
+    <app-dashboard *ngIf="isAuthenticated && displayDashboard"></app-dashboard>
+</div>

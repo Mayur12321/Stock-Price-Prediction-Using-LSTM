@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="chart-container">
+        <ejs-stockchart id="predictionChart_1" class="custom-chart" [enableSelector]='false' [enableCustomRange]="false"
+            [enablePeriodSelector]="false" [title]='title' [titleStyle]="titleStyle" [primaryXAxis]='primaryXAxis'
+            [primaryYAxis]='primaryYAxis' [background]="background" [border]="border" [theme]="theme" [tooltip]="tooltip"
+            [legendSettings]="legendSettings">
+    
+            <e-stockchart-series-collection>
+                <e-stockchart-series [dataSource]='predictionData' type='Line' xName='x' yName='actual' width=2
+                    [marker]="marker" name="Actual Price">
+                </e-stockchart-series>
+    
+                <e-stockchart-series [dataSource]='predictionData' type='Line' xName='x' yName='past_pred' width=2
+                    [marker]="marker" name="Past Predicted Price">
+                </e-stockchart-series>
+    
+                <e-stockchart-series [dataSource]='predictionData' type='Line' xName='x' yName='future_pred' width=2
+                    [marker]="predMarker" name="Future Predicted Price">
+                </e-stockchart-series>
+            </e-stockchart-series-collection>
+    
+        </ejs-stockchart>
+
+        <div class="submit-form-container">
+            <form class="custom-form" [formGroup]="predictionForm">
+                <mat-form-field [floatLabel]="'never'">
+                    <input matInput placeholder="Enter stock" formControlName="symbol">
+                </mat-form-field>
+            </form>
+            <button class="custom-button" (click)="newPrediction()">Get Price Prediction</button>
+        </div>
+
+
+    </div>
+</div>
